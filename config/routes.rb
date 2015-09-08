@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  resources :topics
-
   resources :comments
+  resources :topics
 
   devise_for :users
   resources :links do
