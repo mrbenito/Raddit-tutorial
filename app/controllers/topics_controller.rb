@@ -10,8 +10,8 @@ class TopicsController < ApplicationController
 
   # GET /topics/1
   # GET /topics/1.json
-  def show
-  end
+#  def show
+#  end
 
   # GET /topics/new
   def new
@@ -19,20 +19,21 @@ class TopicsController < ApplicationController
   end
 
   # GET /topics/1/edit
-  def edit
-  end
+#  def edit
+#  end
 
   # POST /topics
   # POST /topics.json
   def create
     @topic = current_user.topics.build(topic_params)
+    @topic.user = current_user
 
     respond_to do |format|
       if @topic.save
         format.html { redirect_to @topic, notice: 'Topic was successfully created.' }
         format.json { render :show, status: :created, location: @topic }
       else
-        format.html { render :new }
+        format.html { render action: "new" }
         format.json { render json: @topic.errors, status: :unprocessable_entity }
       end
     end
@@ -61,6 +62,16 @@ class TopicsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+
+
+
+
+
+
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
